@@ -496,6 +496,16 @@ a.active,a:hover{
   }
 }
 @media (max-width: 858px){
+  nav ul li ul{
+    display: none;
+    position:fixed;
+    top: 400px;
+    margin-right: 0px;
+    margin-left: 250px;
+    background-color: var(--sec-toggle-color);
+    color: var(--sec-headline-color);
+  }
+
   .checkbtn{
     display: block;
     line-height: 70px;
