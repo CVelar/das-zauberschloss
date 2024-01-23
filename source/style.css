@@ -499,7 +499,7 @@ a.active,a:hover{
   nav ul li ul{
     display: none;
     position:fixed;
-    top: 400px;
+    top: 320px;
     margin-right: 0px;
     margin-left: 250px;
     background-color: var(--sec-toggle-color);
@@ -536,10 +536,10 @@ a.active,a:hover{
   nav ul li{
     display: block;
     margin: 50px 0;
-    line-height: 30px;
+    line-height: 15px;
   }
   nav ul li a{
-    font-size: 20px;
+    font-size: 15px;
   }
   
   a:hover,a.active{
@@ -679,10 +679,10 @@ a.active,a:hover{
   nav ul li{
     display: block;
     margin: 50px 0;
-    line-height: 30px;
+    line-height: 15px;
   }
   nav ul li a{
-    font-size: 20px;
+    font-size: 15px;
   }
   a:hover,a.active{
     background: none;
