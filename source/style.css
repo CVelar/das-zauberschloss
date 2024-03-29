@@ -6,7 +6,6 @@
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
-  
 }
 
 :root{
@@ -41,6 +40,22 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 /* speziefisch text */
+
+#updated_news {
+  padding-top: 30px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  max-width: 1200px;
+  margin: auto;
+  background-color: var(--body-color);
+}
+
+.over_headline {
+  margin-top: -10px;
+  text-align: center;
+}
 
 #headline {
     font-family: Florence, cursive;
@@ -79,6 +94,12 @@ body {
   margin-top: -1px;
   margin-bottom: -4px;
   max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+#thumbnail {
+  background: black;
 }
 
 .menuicon{
