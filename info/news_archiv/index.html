@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Das Zauberschloss</title>
+        <meta name="description" content="Hier finden Sie alle Infos, Sendungen von Telemagic, Ausgaben vom Schlosspropheten und noch vieles mehr!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/source/style.css">
+        <link rel="icon" href="/source/img/zs_schwarz_rgb_s_white.png">
+        <script src="/source/js/jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+      <div id="menuContainer"></div> <!-- Verlinkung der Headers. Header unter "/source/header.html". Script in "/source/js/loadMenu.js" -->
+
+        <div class="main">
+          <div class="zaehler">
+            <div class="anfang" onclick="getNews(1)"><img src="/source/img/nach-vorne_w.png" alt=""></div>
+            <div class="zurueck" onclick="previousPage()"><img src="/source/img/zuvor_w.png" alt=""></div>
+            <div class="weiter" onclick="nextPage()"><img src="/source/img/nachste_w.png" alt=""></div>
+            <div class="ende" onclick="getNews(max_page)"><img src="/source/img/nach-hinten_w.png" alt=""></div>
+          </div>
+          <div class="textblock" id="news">
+            <div class="headline"><h1>News - Archiv</h1></div>
+            <div class="section"><p>Es konnten keine News gefunden werden!</p></div>
+          </div>
+          <p><br></p>
+          <div class="zaehler">
+            <div class="anfang" onclick="getNews(1)"><img src="/source/img/nach-vorne_w.png" alt=""></div>
+            <div class="zurueck" onclick="previousPage()"><img src="/source/img/zuvor_w.png" alt=""></div>
+            <div class="weiter" onclick="nextPage()"><img src="/source/img/nachste_w.png" alt=""></div>
+            <div class="ende" onclick="getNews(max_page)"><img src="/source/img/nach-hinten_w.png" alt=""></div>
+          </div>
+        </div>
+        
+
+      <div id="menuFooter"></div> <!-- Verlinkung der Footers. Footer unter "/source/footer.html". Script in "/source/js/loadMenu.js" -->
+        
+        <script src="/source/js/loadMenu.js"></script> <!-- Script zum Verlinken gleichbleibender Codeschnipsel -->
+        <script src="/source/js/include/utility.js"></script>
+        <script src="/source/js/loadNewsCounter.js"></script>
+        <script src="/source/js/loadNewsArchiv.js"></script>
+    </body>
+</html>
