@@ -59,7 +59,7 @@ function getData() {
             data = JSON.parse(data);
             if(data != false){    
                 $.each(data, function(index, element) {
-                    temp = new event(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7]);
+                    temp = new event(element['titel'], element['inhalt'], element['gruppe'], element['link'], element['bild'], element['erstellt_von'], element['erstellt'], element['link_name']);
                     events.push(temp);
                 });
                 console.log (events);

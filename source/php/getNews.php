@@ -36,11 +36,11 @@
 
     // Datenbankabfrage
     if ($new == 1) {
-        $data = database_2d_array("SELECT titel, inhalt, gruppe, link, bild, erstellt_von, erstellt, link_name FROM news WHERE abgelaufen_ab > '$timestamp' ORDER BY erstellt DESC;");
+        $data = db_query("SELECT titel, inhalt, gruppe, link, bild, erstellt_von, erstellt, link_name FROM news WHERE abgelaufen_ab > !timestamp ORDER BY erstellt DESC", array ('!timestamp' => $timestamp));
     } elseif ($quantity == 0) {
-        $data = database_2d_array("SELECT titel, inhalt, gruppe, link, bild, erstellt_von, erstellt, link_name FROM news ORDER BY erstellt DESC;");
+        $data = db_query("SELECT titel, inhalt, gruppe, link, bild, erstellt_von, erstellt, link_name FROM news ORDER BY erstellt DESC");
     } else {
-        $data = database_2d_array("SELECT titel, inhalt, gruppe, link, bild, erstellt_von, erstellt, link_name FROM news ORDER BY erstellt DESC OFFSET $news_start LIMIT 10;");
+        $data = db_query("SELECT titel, inhalt, gruppe, link, bild, erstellt_von, erstellt, link_name FROM news ORDER BY erstellt DESC OFFSET !news_start LIMIT 10", array ('!news_start' => $news_start));
     } 
     if (empty($data)) {
         echo "false";
