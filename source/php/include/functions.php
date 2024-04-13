@@ -5,24 +5,92 @@
         }
     }
 
-    function db_query($query, $arguments = null) {
-        global $DB, $DB_rows_affected;                                                                                      
-        if (!is_null($arguments)) {                                                                                     
-            asort($arguments);                                                                                              
-            foreach ($arguments as $key => $value)                                                                          
-                $query = str_replace($key, is_string($value) ? '\'' . @pg_escape_string($DB, $value) . '\'' : (is_array($value) ? (is_string($value[0]) ? ('\'' . join('\',\'', array_map(function($x) { global $DB; return @pg_escape_string($DB, $x); }, $value)) . '\'') : @pg_escape_string($DB, join(',', $value))) : @pg_escape_string($DB, $value)), $query);
-        }                                                                                                                   
-        $ret = [];                                                                                                          
-        $result = @pg_query($DB, $query);                                                                                   
-        if (!$result) {                                                                                                     
-            echo 'DB: Fehler - ' . @pg_last_error($DB) . PHP_EOL;                                                       
-            exit(10);
-        } else {                                                                                                            
-            $DB_rows_affected = @pg_affected_rows($result);                                                                 
-            while ($obj = @pg_fetch_object($result)) {                                                                      
-              $ret[] = $obj;
+    function database(...$args){
+        $string = $args[0];
+        global $dbhost;
+        global $dbname;
+        global $dbuser;
+        global $dbpw;
+        global $debug_config;
+        debug ($debug_config, "3", "dbhost: $dbhost<br>");
+        debug ($debug_config, "3", "dbname: $dbname<br>");
+        debug ($debug_config, "3", "dbuser: $dbuser<br>");
+        debug ($debug_config, "3", "dbpw: $dbpw<br>");
+        $dbconn = pg_connect("host=$dbhost dbname=$dbname user=$dbuser password=$dbpw")
+        or die('Could not connect: ' . pg_last_error());
+        if (!$dbconn) {
+            echo "Verbindung zur Datenbank fehlgeschlagen: " . pg_last_error();
+        }
+        debug ($debug_config, "3", "dbconn: $dbconn<br>");
+        if (isset($args[1])){
+            $params = $args[1];
+            $string = pg_prepare($dbconn, "query", $string);
+            $result = pg_execute($dbconn, "query", $params) or die('Error message: ' . pg_last_error());
+        }else{
+            $result = pg_query($dbconn, $string);
+            }
+
+        $row = pg_fetch_row($result);
+        if($row != ""){
+            if(count($row) == 1){
+                $row = $row[0];
             }
         }
-        return $ret;
+
+        pg_free_result($result);
+        pg_close($dbconn);
+        return $row;
+    }
+
+    function database_array(...$args){
+        $string = $args[0];
+        global $dbhost;
+        global $dbname;
+        global $dbuser;
+        global $dbpw;
+        $dbconn = pg_connect("host=$dbhost dbname=$dbname user=$dbuser password=$dbpw")
+        or die('Could not connect: ' . pg_last_error());
+        if (isset($args[1])){
+            $params = $args[1];
+            $string = pg_prepare($dbconn, "query", $string);
+            $result = pg_execute($dbconn, "query", $params) or die('Error message: ' . pg_last_error());
+        }else{
+            $result = pg_query($dbconn, $string);
+        }
+    
+        $rows = array();
+        while ($row = pg_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+    
+        pg_free_result($result);
+        pg_close($dbconn);
+        return $rows;
+    }
+
+    //Liest die Datenbank und gibt das Ergebnis als 2D-Array aus.
+    function database_2d_array(...$args){
+        $string = $args[0];
+        global $dbhost;
+        global $dbname;
+        global $dbuser;
+        global $dbpw;
+        $dbconn = pg_connect("host=$dbhost dbname=$dbname user=$dbuser password=$dbpw")
+        or die('Could not connect: ' . pg_last_error());
+        if (isset($args[1])){
+            $params = $args[1];
+            $string = pg_prepare($dbconn, "query", $string);
+            $result = pg_execute($dbconn, "query", $params) or die('Error message: ' . pg_last_error());
+        }else{
+            $result = pg_query($dbconn, $string);
+        }
+        //jede Zeile als Array hinzufügen
+        $rows = array();
+        while ($row = pg_fetch_row($result)) {
+            $rows[] = $row;
+        }
+        pg_free_result($result);
+        pg_close($dbconn);
+        return $rows;
     }
 ?>
