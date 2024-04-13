@@ -5,7 +5,7 @@
     include "include/functions.php";
 
     // Datenbankabfrage
-    $data = database("SELECT COUNT(*) AS num_entries FROM news;");
+    $data = db_query("SELECT COUNT(*) AS num_entries FROM news");
     // $data auf den nächsten 10-er aufrunden
     $data = floor($data / 10) + 1;
     
