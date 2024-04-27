@@ -36,7 +36,7 @@
 
     // Datenbankabfrage
     if ($new == 1) {
-        $data = db_query("SELECT titel, inhalt, gruppe, link, bild, erstellt_von, erstellt, link_name FROM news WHERE abgelaufen_ab > !timestamp ORDER BY erstellt DESC", array ('!timestamp' => $timestamp));
+        $data = db_query("SELECT titel, inhalt, gruppe, link, bild, erstellt_von, erstellt, link_name FROM news WHERE (abgelaufen_ab > !timestamp) AND (erstellt_fuer < !timestamp OR erstellt_fuer IS NULL) ORDER BY erstellt DESC", array ('!timestamp' => $timestamp));
     } elseif ($quantity == 0) {
         $data = db_query("SELECT titel, inhalt, gruppe, link, bild, erstellt_von, erstellt, link_name FROM news ORDER BY erstellt DESC");
     } else {
