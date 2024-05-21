@@ -50,6 +50,12 @@ function onNewData() {
                 }
             });
         }
+
+        // Füge den footer ein
+        // Kovertiere event.date von YYYY-MM-DD HH:MM:SS zu DD.MM.YYYY
+        var date = event.date.slice(8, 10) + '.' + event.date.slice(5, 7) + '.' + event.date.slice(0, 4);
+        var footer = $('<br><br><div class="footerNews"><p>Erstellt am: ' + date + ' | von: ' + event.w_by + '</p></div>');
+        textblock.append(footer);
         
         // Füge den textblock in den #updated_news-Bereich ein
         updatedNewsContainer.append(textblock);
