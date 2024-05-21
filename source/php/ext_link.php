@@ -1,6 +1,12 @@
 <?php
 if(isset($_GET['ziel']) && isset($_GET['name'])) {
     $ziel = $_GET['ziel'];
+    //prüfe ob $ziel mit http://, https:// oder mailto: beginnt
+    if (strpos($ziel, 'http://') === 0 || strpos($ziel, 'https://') === 0 || strpos($ziel, 'mailto:') === 0) {
+        $ziel = $ziel;
+    } else {
+        $ziel = 'https://' . $ziel;
+    }
     $name = $_GET['name'];
     
     // HTML-Code mit Platzhaltern für Argumente
