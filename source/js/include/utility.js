@@ -20,7 +20,7 @@ function onNewData() {
     
     
     $.each(events, function(index, event) {
-        var sections = event.text.split('\n\n');
+        var sections = event.text.split('\n');
         
         // Erstelle einen neuen textblock für jedes Event
         var textblock = $('<div class="textblock"></div>');
@@ -75,7 +75,7 @@ function onNewDataArchiv() {
     
     
     $.each(events, function(index, event) {
-        var sections = event.text.split('\n\n');
+        var sections = event.text.split('\n');
         
         // Erstelle einen neuen textblock für jedes Event
         var textblock = $('<div class="textblock"></div>');
