@@ -149,3 +149,13 @@ function setMaxPages() {
     });
 }
 
+$(document).ready(function() {
+    $('.main-link a').each(function() {
+      var href = $(this).attr('href');
+      if (href.indexOf('/source/php/ext_link.php?ziel=') === 0) {
+        var newHref = href.replace(/#/g, '%23');
+        $(this).attr('href', newHref);
+      }
+    });
+  });
+  
